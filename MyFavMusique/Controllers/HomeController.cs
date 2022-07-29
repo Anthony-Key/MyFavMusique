@@ -1,32 +1,42 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyFavMusique.Data;
 using MyFavMusique.Models;
+using MyFavMusique.ViewModels;
 using System.Diagnostics;
 
 namespace MyFavMusique.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var genres = new Genres
+            {
+                genres = _context.Genres.ToList()
+            };
+
+            return View(genres);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Add()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult AddPOST(Genre genre)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            _context.Genres.Add(genre);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
