@@ -8,11 +8,10 @@
 		<div class="row pb-2">
 			<h2 class="text-primary">
 				Select a genre
-
 			</h2>
 		</div>
 
-		<div class="mb-3">
+<div class="mb-3">
 			
 @if(Model.genres.Count == 0)
 {
@@ -21,17 +20,11 @@
 {
     @foreach(var genre in Model.genres)
     {
-        <button type="button" class="btn btn-outline-primary">@genre.Name</button>
+        <button onclick="location.href='/Genre/Search/@genre.Id'" type="button" class="btn btn-outline-primary">@genre.Name</button>
     }
-
-
 }
-		</div>
-							<button type="button" onclick="location.href='/Home/Add'" class="btn btn-outline-primary">Add</button>
+</div>
 
-	
-	</div>
+<button type="button" onclick="location.href='/Genre/Add'" class="btn btn-outline-primary">Add</button>
 
-
-
-
+</div>

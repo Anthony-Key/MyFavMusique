@@ -1,0 +1,27 @@
+﻿@using MyFavMusique.ViewModels
+@model FMusic
+
+
+
+<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">
+				Music
+			</h2>
+		</div>
+
+<div class="mb-3">
+
+@if(Model.fMusic.Count == 0){
+	<p>
+		Create some music
+	</p>
+} else {
+	//list music
+}	
+
+</div>
+
+<button type="button" onclick="location.href='/Music/Add/@Model.genreId'" class="btn btn-outline-primary">Add</button>
+
+</div>

@@ -8,7 +8,6 @@ namespace MyFavMusique.Controllers
 {
     public class HomeController : Controller
     {
-
         private readonly ApplicationDbContext _context;
 
         public HomeController(ApplicationDbContext context)
@@ -24,19 +23,6 @@ namespace MyFavMusique.Controllers
             };
 
             return View(genres);
-        }
-
-        public IActionResult Add()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddPOST(Genre genre)
-        {
-            _context.Genres.Add(genre);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
         }
     }
 }
