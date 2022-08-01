@@ -18,6 +18,11 @@
 	</p>
 } else {
 	//list music
+
+	@foreach(var genre in Model.fMusic)
+    {
+        <button onclick="location.href='/Genre/Search/@genre.Id'" type="button" class="btn btn-outline-primary">@genre.Title</button>
+    }
 }	
 
 </div>

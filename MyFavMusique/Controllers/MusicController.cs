@@ -21,18 +21,16 @@ namespace MyFavMusique.Controllers
 
         public IActionResult Add(int id)
         {
-            var musicGenre = new MusicGenre
-            {
-                Id = id,
-                music = new Music()
-            };
-            return View(musicGenre);
+            Genre? genre = _context.Genres.FirstOrDefault(x => x.Id == id);
+            Music music = new Music(genre);
+            return View(music);
         }
 
         [HttpPost]
-        public IActionResult AddPOST(MusicGenre music)
+        public IActionResult AddPOST(Music music)
         {
-            _context.Music.Add(music.music);
+            music.Genre = _context.Genres.FirstOrDefault(g => g.Id == music.Genre.Id);
+            _context.Music.Add(music);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
         }

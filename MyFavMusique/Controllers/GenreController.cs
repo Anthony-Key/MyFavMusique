@@ -36,13 +36,8 @@ namespace MyFavMusique.Controllers
         {
             var foundMusic = new List<Music>();
 
-            _context.Music.ToList().ForEach(music =>
-            {
-                if (music.Id == id)
-                {
-                    foundMusic.Add(music);
-                }
-            });
+           var t = _context.Music.ToList();
+
 
             var fMusic = new FMusic
             {
