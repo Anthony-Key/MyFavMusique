@@ -10,6 +10,7 @@ namespace MyFavMusique.Models
         public string Title { get; set; }
         public string Url { get; set; }
         [ForeignKey("GenreId")]
+        public int? GenreId { get; set; }
         public virtual Genre Genre { get; set; }
 
         public Music()
